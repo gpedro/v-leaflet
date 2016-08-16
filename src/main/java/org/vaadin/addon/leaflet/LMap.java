@@ -10,7 +10,6 @@ import org.vaadin.addon.leaflet.shared.LeafletMapClientRpc;
 import org.vaadin.addon.leaflet.shared.LeafletMapServerRpc;
 import org.vaadin.addon.leaflet.shared.LeafletMapState;
 import org.vaadin.addon.leaflet.control.AbstractControl;
-import org.vaadin.addon.leaflet.control.AbstractDefaultControl;
 import org.vaadin.addon.leaflet.control.LLayers;
 import org.vaadin.addon.leaflet.control.LScale;
 import org.vaadin.addon.leaflet.control.LZoom;
@@ -173,7 +172,7 @@ public class LMap extends AbstractComponentContainer {
         }
         super.addComponent(c);
         components.add(c);
-        markAsDirty(); // ?? is this really needed
+        markAsDirty();
     }
 
     @Override
@@ -186,7 +185,13 @@ public class LMap extends AbstractComponentContainer {
                 layersControl.removeLayer((LeafletLayer) c);
             }
         }
-        markAsDirty(); // ?? is this really needed
+        markAsDirty();
+    }
+
+    @Override
+    public void removeAllComponents() {
+    	super.removeAllComponents();
+        markAsDirty();
     }
 
     @Override
